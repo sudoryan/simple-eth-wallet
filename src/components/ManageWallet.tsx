@@ -106,12 +106,16 @@ const ManageWallet = (props: Props) => {
     }
     let tx = {
       to: recipient,
-      value: ethers.utils.parseEther(sendAmount.toString())
+      value: ethers.utils.parseEther(sendAmount.toString()),
+      gasPrice: ethers.utils.parseEther('0.0015'),
     };
     setLoading(true);
     props.wallet.sendTransaction(tx).then(sentTx => {
       setLoading(false);
       setTxHash(sentTx.hash!);
+    }).catch(()=>{
+      setLoading(false);
+      setError('Failed to submit tx');
     });
   };
 
