@@ -107,7 +107,7 @@ const ManageWallet = (props: Props) => {
     let tx = {
       to: recipient,
       value: ethers.utils.parseEther(sendAmount.toString()),
-      gasPrice: ethers.utils.parseEther('0.0015'),
+      gasPrice: ethers.utils.parseUnits('40', 'gwei'),
     };
     setLoading(true);
     props.wallet.sendTransaction(tx).then(sentTx => {
